@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'app_name'=>'Marathonist',
+    'name'=>'Marathonist',
 ];

@@ -1,7 +1,6 @@
 <?php
 
+use App\Http\Controllers\SeriesController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home-page');
-});
+Route::resource('/',SeriesController::class)->names('series');
