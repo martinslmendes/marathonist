@@ -31,7 +31,7 @@ class SeriesController extends Controller
     public function store(Request $request)
     {
         Series::create($request->all());
-        return redirect()->route('series.index');
+        return to_route('series.index');
     }
 
     /**
@@ -65,6 +65,6 @@ class SeriesController extends Controller
     {
         Series::destroy($request->series);
         $request->session()->flash('message.success', 'Series deleted successfully');
-        return redirect()->route('series.index');
+        return to_route('series.index');
     }
 }
