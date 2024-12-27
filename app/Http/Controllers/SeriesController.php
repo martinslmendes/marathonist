@@ -61,6 +61,7 @@ class SeriesController extends Controller
      */
     public function destroy(Series $series)
     {
-        //
+        Series::destroy($series->id);
+        return redirect()->route('series.index');
     }
 }

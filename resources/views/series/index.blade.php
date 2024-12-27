@@ -1,27 +1,38 @@
 @php use App\SeriesStatus; @endphp
 <x-layouts.app>
-    <div class="list-group">
-        @foreach($series as $seriesObject)
-            @php
-                switch ($seriesObject->status){
-                    case SeriesStatus::Ongoing:
-                        $statusClass = 'text-bg-primary';
-                        break;
-                    case SeriesStatus::Renewed;
-                        $statusClass = 'text-bg-success';
-                        break;
-                    case SeriesStatus::Finished;
-                        $statusClass = 'text-bg-secondary';
-                        break;
-                    case SeriesStatus::Cancelled;
-                        $statusClass = 'text-bg-danger';
-                        break;
-                }
-            @endphp
-            <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between">
-                <span>{{ $seriesObject->name }}</span>
-                <span class="badge rounded-pill {{ $statusClass }}">{{ __($seriesObject->status->name) }}</span>
+    @foreach($series as $seriesObject)
+        @php
+            switch ($seriesObject->status){
+                case SeriesStatus::Ongoing:
+                    $statusClass = 'primary';
+                    break;
+                case SeriesStatus::Renewed;
+                    $statusClass = 'success';
+                    break;
+                case SeriesStatus::Finished;
+                    $statusClass = 'secondary';
+                    break;
+                case SeriesStatus::Cancelled;
+                    $statusClass = 'danger';
+                    break;
+            }
+        @endphp
+        <div class="input-group mt-1">
+            <input type="text"
+                   class="form-control"
+                   placeholder="{{ $seriesObject->name }}"
+                   aria-label="{{ $seriesObject->name }}"
+                   readonly>
+            <button class="btn btn-outline-{{ $statusClass }}"
+                    type="button"
+                    disabled>
+                {{ __($seriesObject->status->name) }}
             </button>
-        @endforeach
-    </div>
+            <form action="{{ route('series.destroy', $seriesObject->id) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i></button>
+            </form>
+        </div>
+    @endforeach
 </x-layouts.app>
