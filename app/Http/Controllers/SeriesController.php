@@ -12,7 +12,7 @@ class SeriesController extends Controller
      */
     public function index()
     {
-        return view('series.index');
+        return view('series.index')->with('series', Series::all()->sortBy('name'));
     }
 
     /**

@@ -36,7 +36,7 @@
                            type="radio"
                            name="status"
                            id="series-create-form-status-ongoing"
-                           value="{{ SeriesStatus::ONGOING }}">
+                           value="{{ SeriesStatus::Ongoing }}">
                     <label class="form-check-label" for="series-create-form-status-ongoing">
                         {{ __("Ongoing") }}
                     </label>
@@ -46,7 +46,7 @@
                            type="radio"
                            name="status"
                            id="series-create-form-status-renewed"
-                           value="{{ SeriesStatus::RENEWED }}">
+                           value="{{ SeriesStatus::Renewed }}">
                     <label class="form-check-label" for="series-create-form-status-renewed">
                         {{ __("Renewed") }}
                     </label>
@@ -56,7 +56,7 @@
                            type="radio"
                            name="status"
                            id="series-create-form-status-finished"
-                           value="{{ SeriesStatus::FINISHED }}">
+                           value="{{ SeriesStatus::Finished }}">
                     <label class="form-check-label" for="series-create-form-status-finished">
                         {{ __("Finished") }}
                     </label>
@@ -66,7 +66,7 @@
                            type="radio"
                            name="status"
                            id="series-create-form-status-cancelled"
-                           value="{{ SeriesStatus::CANCELLED }}">
+                           value="{{ SeriesStatus::Cancelled }}">
                     <label class="form-check-label" for="series-create-form-status-cancelled">
                         {{ __("Cancelled") }}
                     </label>
