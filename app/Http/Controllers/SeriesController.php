@@ -20,7 +20,7 @@ class SeriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('series.create');
     }
 
     /**
@@ -28,7 +28,8 @@ class SeriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Series::create($request->all());
+        return redirect()->route('series.index');
     }
 
     /**

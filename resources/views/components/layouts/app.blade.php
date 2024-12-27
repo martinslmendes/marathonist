@@ -7,7 +7,9 @@
 </head>
 <body>
 <x-navbar/>
-{{ $slot }}
+<div class="container">
+    {{ $slot }}
+</div>
 @vite('resources/js/app.js')
 </body>
 </html>
