@@ -12,7 +12,9 @@ class SeriesController extends Controller
      */
     public function index()
     {
-        return view('series.index')->with('series', Series::all()->sortBy('name'));
+        return view('series.index')
+            ->with('series', Series::all()->sortBy('name'))
+            ->with('successMessage', session('message.success'));
     }
 
     /**
@@ -59,9 +61,10 @@ class SeriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Series $series)
+    public function destroy(Request $request)
     {
-        Series::destroy($series->id);
+        Series::destroy($request->series);
+        $request->session()->flash('message.success', 'Series deleted successfully');
         return redirect()->route('series.index');
     }
 }

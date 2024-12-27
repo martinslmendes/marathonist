@@ -1,5 +1,10 @@
 @php use App\SeriesStatus; @endphp
 <x-layouts.app>
+    @isset($successMessage)
+        <div class="alert alert-success" role="alert">
+            {{ __($successMessage) }}
+        </div>
+    @endisset
     @foreach($series as $seriesObject)
         @php
             switch ($seriesObject->status){
@@ -28,7 +33,7 @@
                     disabled>
                 {{ __($seriesObject->status->name) }}
             </button>
-            <form action="{{ route('series.destroy', $seriesObject->id) }}" method="post">
+            <form action="{{ route('series.destroy', $seriesObject) }}" method="post">
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i></button>
