@@ -24,16 +24,16 @@
                 <select class="form-select" id="inputGroupSelect01" name="status">
                     <option value="{{ SeriesStatus::Ongoing }}"
                         {{ $seriesObject->status == SeriesStatus::Ongoing ? 'selected' : '' }}>
-                        {{ __(SeriesStatus::Ongoing->name) }}</option>
+                        {{ __('series.field.status_option.ongoing') }}</option>
                     <option value="{{ SeriesStatus::Renewed }}"
                         {{ $seriesObject->status == SeriesStatus::Renewed ? 'selected' : '' }}>
-                        {{ __(SeriesStatus::Renewed->name) }}</option>
+                        {{ __('series.field.status_option.renewed') }}</option>
                     <option value="{{ SeriesStatus::Finished }}"
                         {{ $seriesObject->status == SeriesStatus::Finished ? 'selected' : '' }}>
-                        {{ __(SeriesStatus::Finished->name) }}</option>
+                        {{ __('series.field.status_option.finished') }}</option>
                     <option value="{{ SeriesStatus::Cancelled }}"
                         {{ $seriesObject->status == SeriesStatus::Cancelled ? 'selected' : '' }}>
-                        {{ __(SeriesStatus::Cancelled->name) }}</option>
+                        {{ __('series.field.status_option.cancelled') }}</option>
                 </select>
                 <button class="btn btn-outline-primary" type="submit" name="action" value="save"><i
                         class="bi bi-save"></i></button>

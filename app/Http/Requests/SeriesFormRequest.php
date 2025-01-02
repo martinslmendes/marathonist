@@ -29,7 +29,7 @@ class SeriesFormRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            "name" => __("Series name")
+            "name" => __("series.field.name")
         ];
     }
 }
