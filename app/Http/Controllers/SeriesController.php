@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SeriesFormRequest;
 use App\Models\Series;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class SeriesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SeriesFormRequest $request)
     {
         Series::create($request->all());
         return to_route('series.index');
@@ -37,7 +38,7 @@ class SeriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Series $series)
+    public function update(SeriesFormRequest $request, Series $series)
     {
         if ($request->action == 'delete') {
             Series::destroy($series->id);

@@ -5,13 +5,22 @@
             {{ __($successMessage) }}
         </div>
     @endisset
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     @foreach ($series as $seriesObject)
         <form action="{{ route('series.update', $seriesObject) }}" method="post">
             <div class="input-group mt-1">
                 @csrf
                 @method('PUT')
-                <input type="text" id="series-{{ $seriesObject->id }}-name" class="form-control" value="{{ $seriesObject->name }}"
-                    aria-label="{{ $seriesObject->name }}" name="name">
+                <input type="text" id="series-{{ $seriesObject->id }}-name" class="form-control"
+                    value="{{ $seriesObject->name }}" aria-label="{{ $seriesObject->name }}" name="name">
                 <select class="form-select" id="inputGroupSelect01" name="status">
                     <option value="{{ SeriesStatus::Ongoing }}"
                         {{ $seriesObject->status == SeriesStatus::Ongoing ? 'selected' : '' }}>
