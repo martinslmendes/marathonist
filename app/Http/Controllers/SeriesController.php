@@ -48,13 +48,4 @@ class SeriesController extends Controller
         }
         return to_route('series.index');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Request $request)
-    {
-
-        return to_route('series.index');
-    }
 }
