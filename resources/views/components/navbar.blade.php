@@ -13,13 +13,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle"
+                    <button class="nav-link dropdown-toggle"
                        href="#"
                        role="button"
                        data-bs-toggle="dropdown"
                        aria-expanded="false">
                         {{ __('series.plural') }}
-                    </a>
+                    </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ route('series.index') }}">{{ __("List") }}</a></li>
                         <li><a class="dropdown-item" href="{{ route('series.create') }}">{{ __("Insert") }}</a></li>
