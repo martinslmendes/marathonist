@@ -5,39 +5,48 @@
             {{ __($successMessage) }}
         </div>
     @endisset
-    @foreach($series as $seriesObject)
+    @foreach ($series as $seriesObject)
         @php
-            switch ($seriesObject->status){
+            switch ($seriesObject->status) {
                 case SeriesStatus::Ongoing:
                     $statusClass = 'primary';
                     break;
-                case SeriesStatus::Renewed;
+                case SeriesStatus::Renewed:
                     $statusClass = 'success';
                     break;
-                case SeriesStatus::Finished;
+                case SeriesStatus::Finished:
                     $statusClass = 'secondary';
                     break;
-                case SeriesStatus::Cancelled;
+                case SeriesStatus::Cancelled:
                     $statusClass = 'danger';
                     break;
             }
         @endphp
-        <div class="input-group mt-1">
-            <input type="text"
-                   class="form-control"
-                   placeholder="{{ $seriesObject->name }}"
-                   aria-label="{{ $seriesObject->name }}"
-                   readonly>
-            <button class="btn btn-outline-{{ $statusClass }}"
-                    type="button"
-                    disabled>
-                {{ __($seriesObject->status->name) }}
-            </button>
-            <form action="{{ route('series.destroy', $seriesObject) }}" method="post">
+        <form action="{{ route('series.update', $seriesObject) }}" method="post">
+            <div class="input-group mt-1">
                 @csrf
-                @method('DELETE')
-                <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i></button>
-            </form>
-        </div>
+                @method('PUT')
+                <input type="text" id="series-{{ $seriesObject->id }}-name" class="form-control" value="{{ $seriesObject->name }}"
+                    aria-label="{{ $seriesObject->name }}" name="name">
+                <select class="form-select" id="inputGroupSelect01" name="status">
+                    <option value="{{ SeriesStatus::Ongoing }}"
+                        {{ $seriesObject->status == SeriesStatus::Ongoing ? 'selected' : '' }}>
+                        {{ __(SeriesStatus::Ongoing->name) }}</option>
+                    <option value="{{ SeriesStatus::Renewed }}"
+                        {{ $seriesObject->status == SeriesStatus::Renewed ? 'selected' : '' }}>
+                        {{ __(SeriesStatus::Renewed->name) }}</option>
+                    <option value="{{ SeriesStatus::Finished }}"
+                        {{ $seriesObject->status == SeriesStatus::Finished ? 'selected' : '' }}>
+                        {{ __(SeriesStatus::Finished->name) }}</option>
+                    <option value="{{ SeriesStatus::Cancelled }}"
+                        {{ $seriesObject->status == SeriesStatus::Cancelled ? 'selected' : '' }}>
+                        {{ __(SeriesStatus::Cancelled->name) }}</option>
+                </select>
+                <button class="btn btn-outline-primary" type="submit" name="action" value="save"><i
+                        class="bi bi-save"></i></button>
+                <button class="btn btn-outline-danger" type="submit" name="action" value="delete"><i
+                        class="bi bi-trash"></i></button>
+            </div>
+        </form>
     @endforeach
 </x-layouts.app>

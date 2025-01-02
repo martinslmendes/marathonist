@@ -35,27 +35,18 @@ class SeriesController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Series $series)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Series $series)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Series $series)
     {
-        //
+        if ($request->action == 'delete') {
+            Series::destroy($series->id);
+            $request->session()->flash('message.success', 'Series deleted successfully');
+        } else if ($request->action == 'save') {
+            $series->fill($request->all());
+            $series->save();
+        }
+        return to_route('series.index');
     }
 
     /**
@@ -63,8 +54,7 @@ class SeriesController extends Controller
      */
     public function destroy(Request $request)
     {
-        Series::destroy($request->series);
-        $request->session()->flash('message.success', 'Series deleted successfully');
+
         return to_route('series.index');
     }
 }
