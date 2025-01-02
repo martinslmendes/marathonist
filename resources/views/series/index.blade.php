@@ -6,22 +6,6 @@
         </div>
     @endisset
     @foreach ($series as $seriesObject)
-        @php
-            switch ($seriesObject->status) {
-                case SeriesStatus::Ongoing:
-                    $statusClass = 'primary';
-                    break;
-                case SeriesStatus::Renewed:
-                    $statusClass = 'success';
-                    break;
-                case SeriesStatus::Finished:
-                    $statusClass = 'secondary';
-                    break;
-                case SeriesStatus::Cancelled:
-                    $statusClass = 'danger';
-                    break;
-            }
-        @endphp
         <form action="{{ route('series.update', $seriesObject) }}" method="post">
             <div class="input-group mt-1">
                 @csrf
