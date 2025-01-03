@@ -6,5 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Season extends Model
 {
-    //
+    protected $fillable = ['name', 'number'];
+
+    public function series()
+    {
+        return $this->belongsTo(Series::class);
+    }
+
+    public function episodes()
+    {
+        return $this->hasMany(Episode::class);
+    }
 }
