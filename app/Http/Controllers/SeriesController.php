@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SeriesFormRequest;
 use App\Models\Series;
-use Illuminate\Http\Request;
+use App\Repositories\SeriesRepositoryInterface;
 
 class SeriesController extends Controller
 {
+
+    public function __construct(private SeriesRepositoryInterface $repository) {}
     /**
      * Display a listing of the resource.
      */
@@ -31,7 +33,7 @@ class SeriesController extends Controller
      */
     public function store(SeriesFormRequest $request)
     {
-        Series::create($request->all());
+        $this->repository->store($request);
         return to_route('series.index');
     }
 
